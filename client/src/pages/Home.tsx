@@ -4,12 +4,12 @@ import { SpellCard } from "@/components/SpellCard";
 import { InfoSection } from "@/components/InfoSection";
 import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
-import { Flame, Eye, Shield, Gem } from "lucide-react";
+import { Flame, Eye, Shield, Gem, Book, Hourglass, Triangle } from "lucide-react";
 
 const spells = [
   {
     title: "Chama Interior",
-    description: "Aumente a sua intuição e clareza exterior.",
+    description: "Aumente a sua intuição e clareza interior.",
     icon: Flame,
   },
   {
@@ -29,29 +29,47 @@ const spells = [
   },
 ];
 
+const extraInfo = [
+  {
+    title: "Atendimentos",
+    description: "Oráculos, consultas e rituais personalizados.",
+    icon: Book,
+  },
+  {
+    title: "Aulas / Leituras",
+    description: "Cursos de magia, leitura de tarot e astrologia.",
+    icon: Hourglass,
+  },
+  {
+    title: "Perguntas Frequentes",
+    description: "Encontre as respostas para suas dúvidas mágicas.",
+    icon: Triangle,
+  },
+];
+
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background text-foreground selection:bg-primary/10">
+    <div className="min-h-screen bg-background text-foreground selection:bg-accent/10">
       <Navigation />
       
       <main>
         <Hero />
 
         {/* Spells Section */}
-        <section id="spells" className="py-24 md:py-32 bg-background relative">
-          <div className="container mx-auto px-6">
+        <section id="spells" className="py-20 md:py-32 bg-background relative overflow-hidden">
+          <div className="container mx-auto px-4 md:px-6">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-16 md:mb-20"
+              className="text-center mb-16"
             >
               <div className="section-divider">
-                <h2 className="text-3xl md:text-4xl font-serif font-bold uppercase tracking-[0.2em] text-[#8B5E3C]">Feitiços</h2>
+                <h2 className="text-2xl md:text-3xl font-serif font-bold uppercase tracking-[0.3em] text-accent">Feitiços</h2>
               </div>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
               {spells.map((spell, idx) => (
                 <SpellCard key={idx} {...spell} delay={idx * 0.1} />
               ))}
@@ -60,38 +78,38 @@ export default function Home() {
         </section>
 
         {/* About Section */}
-        <section id="about" className="py-24 md:py-32 bg-background relative overflow-hidden border-t border-border/30">
-          <div className="container mx-auto px-6 relative z-10">
+        <section id="about" className="py-20 md:py-32 bg-[#FDFCF9] relative overflow-hidden">
+          <div className="container mx-auto px-4 md:px-6 relative z-10">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-16 md:mb-20"
+              className="text-center mb-16 md:mb-24"
             >
               <div className="section-divider">
-                <h2 className="text-3xl md:text-4xl font-serif font-bold uppercase tracking-[0.2em] text-[#8B5E3C]">Quem Sou</h2>
+                <h2 className="text-2xl md:text-3xl font-serif font-bold uppercase tracking-[0.3em] text-accent">Quem Sou</h2>
               </div>
             </motion.div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               {/* Image Side */}
               <motion.div 
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 1 }}
-                className="relative flex items-center justify-center"
+                transition={{ duration: 1.2, ease: "easeOut" }}
+                className="relative flex items-center justify-center order-2 lg:order-1"
               >
-                {/* Sparkle background effects */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-accent/10 via-transparent to-transparent blur-3xl" />
-                
-                <div className="relative z-10 p-4">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-accent/5 via-transparent to-transparent blur-[100px]" />
+                <div className="relative z-10 p-4 w-full max-w-[320px] md:max-w-[450px]">
                   <img 
                     src="/assets/logo-aged.png" 
                     alt="Owl illustration" 
-                    className="w-full max-w-[400px] h-auto drop-shadow-xl"
+                    className="w-full h-auto drop-shadow-2xl animate-[float_6s_easeInOut_infinite]"
                   />
-                  {/* Floating sparkles could be added here as small absolute divs if needed */}
+                  {/* Decorative Sparkles */}
+                  <div className="absolute top-0 right-0 w-4 h-4 bg-accent/20 rounded-full blur-sm animate-pulse" />
+                  <div className="absolute bottom-10 left-0 w-3 h-3 bg-accent/30 rounded-full blur-sm animate-pulse delay-700" />
                 </div>
               </motion.div>
 
@@ -100,17 +118,17 @@ export default function Home() {
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="text-left"
+                transition={{ duration: 1, delay: 0.2 }}
+                className="text-center lg:text-left order-1 lg:order-2"
               >
-                <h3 className="text-2xl md:text-3xl font-serif mb-6 text-foreground/90">
-                  Ola, meu nome é <span className="border-b-2 border-primary/20">Morgana</span>
+                <h3 className="text-xl md:text-2xl font-serif mb-8 text-foreground/90 tracking-widest uppercase">
+                  Ola, meu nome é <span className="text-accent underline underline-offset-8 decoration-accent/20">Morgana</span>
                 </h3>
-                <div className="space-y-6 text-lg text-foreground/70 font-body leading-relaxed max-w-xl">
+                <div className="space-y-8 text-base md:text-lg text-foreground/70 font-body leading-relaxed max-w-xl mx-auto lg:mx-0">
                   <p>
                     Sou um eterno estudante dos misterios ocultos e da magia, dedicado a compartilhar conhecimentos, feitiços e sabedoria ancestral com todos que buscam amplificar sua consciência espiritual.
                   </p>
-                  <p className="italic">
+                  <p className="italic text-accent/80 font-medium">
                     "A magia não é sobrenatural, é a natureza profunda ainda não compreendida."
                   </p>
                 </div>
@@ -119,10 +137,60 @@ export default function Home() {
           </div>
         </section>
 
-        <InfoSection />
+        {/* Info Section (Specific to reference photo) */}
+        <section id="info" className="py-20 md:py-32 bg-background relative border-t border-border/20">
+          <div className="container mx-auto px-4 md:px-6">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <div className="section-divider">
+                <h2 className="text-2xl md:text-3xl font-serif font-bold uppercase tracking-[0.3em] text-accent">Informações</h2>
+              </div>
+            </motion.div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12">
+              {extraInfo.map((item, idx) => (
+                <SpellCard key={idx} {...item} delay={idx * 0.1} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Mini Store (Lojinha) placeholder like in photo */}
+        <section id="shop" className="py-20 md:py-32 bg-[#FDFCF9] border-t border-border/20">
+          <div className="container mx-auto px-4 md:px-6">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <div className="section-divider">
+                <h2 className="text-2xl md:text-3xl font-serif font-bold uppercase tracking-[0.3em] text-accent">Lojinha</h2>
+              </div>
+            </motion.div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12 opacity-80">
+               {/* Visual placeholders for the card-deck, pendulum, and crystal ball in lojinha */}
+               <div className="bg-white/50 border border-border/30 rounded-xl p-8 h-40 flex items-center justify-center italic text-accent/40">Em breve</div>
+               <div className="bg-white/50 border border-border/30 rounded-xl p-8 h-40 flex items-center justify-center italic text-accent/40">Em breve</div>
+               <div className="bg-white/50 border border-border/30 rounded-xl p-8 h-40 flex items-center justify-center italic text-accent/40">Em breve</div>
+            </div>
+          </div>
+        </section>
       </main>
 
       <Footer />
+      
+      <style>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-15px); }
+        }
+      `}</style>
     </div>
   );
 }

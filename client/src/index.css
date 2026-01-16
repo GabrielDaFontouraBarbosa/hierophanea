@@ -5,30 +5,27 @@
 @tailwind utilities;
 
 :root {
-  /* Mystic Palette from Reference */
-  --background: 45 33% 96%; /* Creme #F9F7F2 */
-  --foreground: 261 73% 15%; /* Deep Purple #2E1065 */
+  /* Mystic Palette - Precise Match to Photo */
+  --background: 40 30% 98%; /* Soft Creme #FDFCF9 */
+  --foreground: 261 45% 15%; /* Deep Mystic Purple #24143D */
   
-  --primary: 261 73% 15%; /* Deep Purple */
-  --primary-foreground: 45 33% 96%; /* Creme */
+  --primary: 261 45% 15%; /* Deep Mystic Purple */
+  --primary-foreground: 40 30% 98%; /* Creme */
   
-  --secondary: 45 40% 90%; /* Light Beige */
-  --secondary-foreground: 261 73% 15%;
+  --secondary: 40 25% 94%; /* Light Beige #F5F1E9 */
+  --secondary-foreground: 261 45% 15%;
   
-  --muted: 260 20% 70%;
-  --muted-foreground: 260 40% 30%;
+  --muted: 260 15% 70%;
+  --muted-foreground: 260 30% 30%;
   
-  --accent: 46 97% 65%; /* Gold #FCD34D */
-  --accent-foreground: 261 73% 15%;
+  --accent: 35 60% 50%; /* Golden Bronze/Terracotta #A67C52 */
+  --accent-foreground: 40 30% 98%;
   
-  --destructive: 0 60% 50%;
-  --destructive-foreground: 0 0% 100%;
-  
-  --border: 45 20% 85%;
-  --input: 45 20% 85%;
-  --ring: 261 73% 15%;
+  --border: 40 15% 88%; /* Soft border */
+  --input: 40 15% 88%;
+  --ring: 261 45% 15%;
 
-  --radius: 0.5rem;
+  --radius: 0.75rem;
   
   --font-serif: 'Cinzel', serif;
   --font-body: 'Alice', serif;
@@ -37,29 +34,37 @@
 
 @layer base {
   body {
-    @apply bg-background text-foreground antialiased selection:bg-primary/20;
+    @apply bg-background text-foreground antialiased selection:bg-accent/20;
     font-family: var(--font-body);
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-serif);
-    @apply font-medium tracking-wide;
+    @apply font-medium tracking-widest uppercase;
   }
 }
 
 @layer utilities {
   .hero-gradient {
-    background: radial-gradient(circle at 50% 30%, #4c1d95 0%, #2e1065 100%);
+    background: radial-gradient(circle at 50% 30%, #3B1C6E 0%, #1A0B2E 100%);
   }
   
   .section-divider {
-    @apply flex items-center justify-center gap-4 text-accent;
+    @apply flex items-center justify-center gap-6 text-accent py-4;
   }
   
   .section-divider::before,
   .section-divider::after {
     content: "";
-    @apply h-[1px] w-12 bg-accent/30;
+    @apply h-[1px] w-16 bg-accent/30;
+  }
+
+  .mystic-card {
+    @apply bg-[#FDFCF9] border border-[#E5E1D5] rounded-xl transition-all duration-500 hover:shadow-[0_10px_40px_-15px_rgba(0,0,0,0.1)] hover:-translate-y-1;
+  }
+
+  .glow-effect {
+    box-shadow: 0 0 30px rgba(166, 124, 82, 0.1);
   }
 }
 
@@ -72,10 +77,10 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--foreground) / 0.1);
+  background: hsl(var(--accent) / 0.2);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--foreground) / 0.2);
+  background: hsl(var(--accent) / 0.4);
 }

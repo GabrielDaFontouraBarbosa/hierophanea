@@ -12,33 +12,33 @@ interface SpellCardProps {
 export function SpellCard({ title, description, icon: Icon, delay = 0 }: SpellCardProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay, ease: "easeOut" }}
+      transition={{ duration: 0.8, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
       viewport={{ once: true }}
-      className="group relative bg-[#FDFCF9] rounded-xl border border-[#E5E1D5] p-8 text-center flex flex-col items-center hover:shadow-lg transition-all duration-300"
+      className="group relative bg-[#FDFCF9] rounded-xl border border-[#E5E1D5] p-6 md:p-8 text-center flex flex-col items-center hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] transition-all duration-500"
     >
-      <div className="mb-6 text-[#D4AF37] group-hover:scale-110 transition-transform duration-500">
-        <Icon className="w-12 h-12 stroke-[1.5]" />
+      <div className="mb-6 text-accent group-hover:scale-110 transition-transform duration-700 ease-out">
+        <Icon className="w-12 h-12 stroke-[1.2]" />
       </div>
 
-      <h3 className="text-xl font-serif font-bold text-foreground mb-3 tracking-wide">
+      <h3 className="text-lg md:text-xl font-serif font-bold text-foreground mb-4 tracking-wider">
         {title}
       </h3>
       
-      <p className="text-foreground/60 font-body leading-relaxed mb-8 flex-grow text-sm">
+      <p className="text-foreground/60 font-body leading-relaxed mb-8 flex-grow text-sm md:text-base">
         {description}
       </p>
 
       <Button 
         variant="default"
-        className="bg-[#2E1065] hover:bg-[#1a0b36] text-white rounded-full px-8 h-10 font-sans uppercase tracking-[0.2em] text-[10px] no-default-hover-elevate"
+        className="bg-[#24143D] hover:bg-[#1A0B2E] text-white rounded-full px-10 h-11 font-sans uppercase tracking-[0.25em] text-[10px] transition-all duration-300 shadow-md hover:shadow-lg active:scale-95 no-default-hover-elevate"
       >
         Ver Mais
       </Button>
       
-      {/* Soft shadow hint like in the photo */}
-      <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/[0.02] to-transparent pointer-events-none rounded-b-xl" />
+      {/* Photo-accurate soft bottom shadow */}
+      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/[0.03] to-transparent pointer-events-none rounded-b-xl" />
     </motion.div>
   );
 }
