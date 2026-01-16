@@ -5,30 +5,30 @@
 @tailwind utilities;
 
 :root {
-  /* Mystic Palette */
-  --background: 261 73% 15%; /* Deep Purple #2E1065 - Adjusted for HSL */
-  --foreground: 48 100% 96%; /* Cream #FFFBEB */
+  /* Mystic Palette from Reference */
+  --background: 45 33% 96%; /* Creme #F9F7F2 */
+  --foreground: 261 73% 15%; /* Deep Purple #2E1065 */
   
-  --primary: 46 97% 65%; /* Soft Gold #FCD34D */
-  --primary-foreground: 261 73% 15%; /* Dark text on gold */
+  --primary: 261 73% 15%; /* Deep Purple */
+  --primary-foreground: 45 33% 96%; /* Creme */
   
-  --secondary: 260 60% 20%; /* Lighter purple for cards */
-  --secondary-foreground: 48 100% 96%;
+  --secondary: 45 40% 90%; /* Light Beige */
+  --secondary-foreground: 261 73% 15%;
   
-  --muted: 260 40% 30%;
-  --muted-foreground: 260 20% 70%;
+  --muted: 260 20% 70%;
+  --muted-foreground: 260 40% 30%;
   
-  --accent: 46 97% 65%;
+  --accent: 46 97% 65%; /* Gold #FCD34D */
   --accent-foreground: 261 73% 15%;
   
   --destructive: 0 60% 50%;
   --destructive-foreground: 0 0% 100%;
   
-  --border: 260 40% 30%;
-  --input: 260 40% 30%;
-  --ring: 46 97% 65%;
+  --border: 45 20% 85%;
+  --input: 45 20% 85%;
+  --ring: 261 73% 15%;
 
-  --radius: 0.75rem;
+  --radius: 0.5rem;
   
   --font-serif: 'Cinzel', serif;
   --font-body: 'Alice', serif;
@@ -37,7 +37,7 @@
 
 @layer base {
   body {
-    @apply bg-background text-foreground antialiased selection:bg-primary/30 selection:text-primary;
+    @apply bg-background text-foreground antialiased selection:bg-primary/20;
     font-family: var(--font-body);
   }
 
@@ -48,22 +48,23 @@
 }
 
 @layer utilities {
-  .text-shadow-glow {
-    text-shadow: 0 0 20px rgba(252, 211, 77, 0.3);
+  .hero-gradient {
+    background: radial-gradient(circle at 50% 30%, #4c1d95 0%, #2e1065 100%);
   }
   
-  .glass-card {
-    @apply bg-white/5 backdrop-blur-sm border border-white/10 shadow-xl;
+  .section-divider {
+    @apply flex items-center justify-center gap-4 text-accent;
   }
   
-  .gold-gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#FCD34D] via-[#FFFBEB] to-[#FCD34D];
+  .section-divider::before,
+  .section-divider::after {
+    content: "";
+    @apply h-[1px] w-12 bg-accent/30;
   }
 }
 
-/* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -71,10 +72,10 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--border));
-  border-radius: 5px;
+  background: hsl(var(--foreground) / 0.1);
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--primary) / 0.5);
+  background: hsl(var(--foreground) / 0.2);
 }
