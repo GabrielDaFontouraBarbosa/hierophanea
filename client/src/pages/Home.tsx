@@ -56,20 +56,20 @@ export default function Home() {
         <Hero />
 
         {/* Spells Section */}
-        <section id="spells" className="py-20 md:py-32 bg-background relative overflow-hidden">
+        <section id="spells" className="py-16 md:py-32 bg-background relative overflow-hidden">
           <div className="container mx-auto px-4 md:px-6">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-16"
+              className="text-center mb-12 md:mb-16"
             >
               <div className="section-divider">
-                <h2 className="text-2xl md:text-3xl font-serif font-bold uppercase tracking-[0.3em] text-accent">Feitiços</h2>
+                <h2 className="text-xl md:text-3xl font-serif font-bold uppercase tracking-[0.3em] text-accent">Feitiços</h2>
               </div>
             </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
               {spells.map((spell, idx) => (
                 <SpellCard key={idx} {...spell} delay={idx * 0.1} />
               ))}
@@ -78,16 +78,16 @@ export default function Home() {
         </section>
 
         {/* About Section */}
-        <section id="about" className="py-20 md:py-32 bg-[#FDFCF9] relative overflow-hidden">
+        <section id="about" className="py-16 md:py-32 bg-[#FDFCF9] relative overflow-hidden">
           <div className="container mx-auto px-4 md:px-6 relative z-10">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-16 md:mb-24"
+              className="text-center mb-12 md:mb-24"
             >
               <div className="section-divider">
-                <h2 className="text-2xl md:text-3xl font-serif font-bold uppercase tracking-[0.3em] text-accent">Quem Sou</h2>
+                <h2 className="text-xl md:text-3xl font-serif font-bold uppercase tracking-[0.3em] text-accent">Quem Sou</h2>
               </div>
             </motion.div>
 
@@ -100,16 +100,16 @@ export default function Home() {
                 transition={{ duration: 1.2, ease: "easeOut" }}
                 className="relative flex items-center justify-center order-2 lg:order-1"
               >
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-accent/5 via-transparent to-transparent blur-[100px]" />
-                <div className="relative z-10 p-4 w-full max-w-[320px] md:max-w-[450px]">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-accent/5 via-transparent to-transparent blur-[60px] md:blur-[100px]" />
+                <div className="relative z-10 p-4 w-full max-w-[280px] sm:max-w-[320px] md:max-w-[450px]">
                   <img 
                     src="/assets/logo-aged.png" 
                     alt="Owl illustration" 
                     className="w-full h-auto drop-shadow-2xl animate-[float_6s_easeInOut_infinite]"
                   />
                   {/* Decorative Sparkles */}
-                  <div className="absolute top-0 right-0 w-4 h-4 bg-accent/20 rounded-full blur-sm animate-pulse" />
-                  <div className="absolute bottom-10 left-0 w-3 h-3 bg-accent/30 rounded-full blur-sm animate-pulse delay-700" />
+                  <div className="absolute top-0 right-0 w-3 h-3 md:w-4 md:h-4 bg-accent/20 rounded-full blur-sm animate-pulse" />
+                  <div className="absolute bottom-10 left-0 w-2 h-2 md:w-3 md:h-3 bg-accent/30 rounded-full blur-sm animate-pulse delay-700" />
                 </div>
               </motion.div>
 
@@ -121,10 +121,10 @@ export default function Home() {
                 transition={{ duration: 1, delay: 0.2 }}
                 className="text-center lg:text-left order-1 lg:order-2"
               >
-                <h3 className="text-xl md:text-2xl font-serif mb-8 text-foreground/90 tracking-widest uppercase">
+                <h3 className="text-lg md:text-2xl font-serif mb-6 md:mb-8 text-foreground/90 tracking-[0.15em] uppercase">
                   Ola, meu nome é <span className="text-accent underline underline-offset-8 decoration-accent/20">Morgana</span>
                 </h3>
-                <div className="space-y-8 text-base md:text-lg text-foreground/70 font-body leading-relaxed max-w-xl mx-auto lg:mx-0">
+                <div className="space-y-6 md:space-y-8 text-[15px] md:text-lg text-foreground/70 font-body leading-relaxed max-w-xl mx-auto lg:mx-0">
                   <p>
                     Sou um eterno estudante dos misterios ocultos e da magia, dedicado a compartilhar conhecimentos, feitiços e sabedoria ancestral com todos que buscam amplificar sua consciência espiritual.
                   </p>
@@ -137,21 +137,21 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Info Section (Specific to reference photo) */}
-        <section id="info" className="py-20 md:py-32 bg-background relative border-t border-border/20">
+        {/* Info Section */}
+        <section id="info" className="py-16 md:py-32 bg-background relative border-t border-border/20">
           <div className="container mx-auto px-4 md:px-6">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-16"
+              className="text-center mb-12 md:mb-16"
             >
               <div className="section-divider">
-                <h2 className="text-2xl md:text-3xl font-serif font-bold uppercase tracking-[0.3em] text-accent">Informações</h2>
+                <h2 className="text-xl md:text-3xl font-serif font-bold uppercase tracking-[0.3em] text-accent">Informações</h2>
               </div>
             </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
               {extraInfo.map((item, idx) => (
                 <SpellCard key={idx} {...item} delay={idx * 0.1} />
               ))}
@@ -159,25 +159,24 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Mini Store (Lojinha) placeholder like in photo */}
-        <section id="shop" className="py-20 md:py-32 bg-[#FDFCF9] border-t border-border/20">
+        {/* Lojinha placeholder */}
+        <section id="shop" className="py-16 md:py-32 bg-[#FDFCF9] border-t border-border/20">
           <div className="container mx-auto px-4 md:px-6">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-16"
+              className="text-center mb-12 md:mb-16"
             >
               <div className="section-divider">
-                <h2 className="text-2xl md:text-3xl font-serif font-bold uppercase tracking-[0.3em] text-accent">Lojinha</h2>
+                <h2 className="text-xl md:text-3xl font-serif font-bold uppercase tracking-[0.3em] text-accent">Lojinha</h2>
               </div>
             </motion.div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12 opacity-80">
-               {/* Visual placeholders for the card-deck, pendulum, and crystal ball in lojinha */}
-               <div className="bg-white/50 border border-border/30 rounded-xl p-8 h-40 flex items-center justify-center italic text-accent/40">Em breve</div>
-               <div className="bg-white/50 border border-border/30 rounded-xl p-8 h-40 flex items-center justify-center italic text-accent/40">Em breve</div>
-               <div className="bg-white/50 border border-border/30 rounded-xl p-8 h-40 flex items-center justify-center italic text-accent/40">Em breve</div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-12 opacity-80">
+               <div className="bg-white/50 border border-border/30 rounded-xl p-6 md:p-8 h-32 md:h-40 flex items-center justify-center italic text-accent/40 text-sm md:text-base">Em breve</div>
+               <div className="bg-white/50 border border-border/30 rounded-xl p-6 md:p-8 h-32 md:h-40 flex items-center justify-center italic text-accent/40 text-sm md:text-base">Em breve</div>
+               <div className="bg-white/50 border border-border/30 rounded-xl p-6 md:p-8 h-32 md:h-40 flex items-center justify-center italic text-accent/40 text-sm md:text-base hidden sm:flex">Em breve</div>
             </div>
           </div>
         </section>
