@@ -1,105 +1,110 @@
-import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+
+const navItems = [
+  { title: "Home", url: "/" },
+  { title: "Feitiços", url: "/#spells" },
+  { title: "Sobre mim", url: "/#about" },
+  { title: "Informações", url: "/#info" },
+];
 
 export function Navigation() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: "Início", href: "#hero" },
-    { name: "Feitiços", href: "#spells" },
-    { name: "Quem Sou", href: "#about" },
-    { name: "Informações", href: "#info" },
-  ];
-
-  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
-    setIsMobileOpen(false);
-    const element = document.querySelector(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+  const handleNavClick = (url: string) => {
+    setIsOpen(false);
+    if (url.startsWith("/#")) {
+      const id = url.substring(2);
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   return (
-    <nav
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent",
-        isScrolled ? "bg-[#1a0b36]/90 backdrop-blur-md border-white/5 py-3" : "bg-transparent py-6"
-      )}
+    <nav 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled ? "bg-background/80 backdrop-blur-md py-4 shadow-sm" : "bg-transparent py-6"
+      }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
-        <a 
-          href="#hero" 
-          onClick={(e) => handleScrollTo(e, "#hero")}
-          className="text-2xl font-serif font-bold tracking-widest text-primary hover:opacity-80 transition-opacity"
-        >
-          MYSTIC
-        </a>
+        <Link href="/" className="flex items-center gap-3 group">
+          <img 
+            src="/assets/logo-old-gold.png" 
+            alt="Logo" 
+            className="w-10 h-10 group-hover:scale-110 transition-transform duration-500"
+          />
+          <span className={`text-xl font-serif tracking-widest uppercase transition-colors duration-500 ${
+            scrolled ? "text-foreground" : "text-white"
+          }`}>
+            Hierophanea
+          </span>
+        </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center space-x-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={(e) => handleScrollTo(e, link.href)}
-              className="text-sm uppercase tracking-widest text-foreground/80 hover:text-primary transition-colors font-sans"
+        <div className="hidden md:flex items-center gap-10">
+          {navItems.map((item) => (
+            <button
+              key={item.title}
+              onClick={() => handleNavClick(item.url)}
+              className={`text-xs uppercase tracking-[0.3em] font-sans transition-colors duration-500 hover:text-accent ${
+                scrolled ? "text-foreground/70" : "text-white/70"
+              }`}
             >
-              {link.name}
-            </a>
+              {item.title}
+            </button>
           ))}
-          <a
-            href="#contact"
-            onClick={(e) => handleScrollTo(e, "#info")}
-            className="px-6 py-2 rounded-full border border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 text-sm uppercase tracking-widest font-sans"
+          <Button 
+            className="bg-accent hover:bg-accent/80 text-accent-foreground rounded-full px-6 text-xs uppercase tracking-widest no-default-hover-elevate"
           >
             Contato
-          </a>
+          </Button>
         </div>
 
         {/* Mobile Toggle */}
-        <button
-          className="md:hidden text-foreground"
-          onClick={() => setIsMobileOpen(!isMobileOpen)}
+        <button 
+          className={`md:hidden p-2 transition-colors duration-500 ${
+            scrolled ? "text-foreground" : "text-white"
+          }`}
+          onClick={() => setIsOpen(!isOpen)}
         >
-          {isMobileOpen ? <X /> : <Menu />}
+          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
-      {/* Mobile Nav */}
-      <AnimatePresence>
-        {isMobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 right-0 bg-[#1a0b36] border-b border-white/10 md:hidden flex flex-col p-6 space-y-4 shadow-2xl"
-          >
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => handleScrollTo(e, link.href)}
-                className="text-lg text-center text-foreground/80 hover:text-primary py-2"
+      {/* Mobile Menu */}
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="absolute top-full left-0 right-0 bg-background border-b border-border p-6 md:hidden shadow-xl"
+        >
+          <div className="flex flex-col gap-6 items-center">
+            {navItems.map((item) => (
+              <button
+                key={item.title}
+                onClick={() => handleNavClick(item.url)}
+                className="text-xs uppercase tracking-[0.3em] text-foreground/70 hover:text-accent"
               >
-                {link.name}
-              </a>
+                {item.title}
+              </button>
             ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <Button className="w-full bg-accent hover:bg-accent/80 text-accent-foreground rounded-full no-default-hover-elevate">
+              Contato
+            </Button>
+          </div>
+        </motion.div>
+      )}
     </nav>
   );
 }
