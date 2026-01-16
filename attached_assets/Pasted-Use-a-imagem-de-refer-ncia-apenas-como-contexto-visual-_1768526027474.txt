@@ -1,0 +1,68 @@
+Use a imagem de referência apenas como contexto visual.
+Gere um site estático (HTML + CSS + JS separados) com foco em estrutura e layout, sem usar imagens externas.
+
+REQUISITOS GERAIS
+- Estrutura clara e semântica (header, main, section, footer)
+- Código organizado e comentado
+- Nenhum framework (apenas HTML, CSS e JS puro)
+- Design elegante, místico e minimalista
+
+TOPO DO SITE (HERO SECTION)
+- Seção hero em tela cheia (100vh)
+- Background preparado para parallax (sem imagem, use gradiente escuro como placeholder)
+- Título grande e centralizado
+- Descrição curta abaixo do título
+- Dois botões lado a lado:
+  - Botão primário: "Feitiços"
+  - Botão secundário: "Sobre mim"
+- Estrutura pronta para efeito parallax via CSS
+
+SEÇÃO FEITIÇOS
+- Título da seção centralizado
+- Grid responsivo com 4 cards
+- Cada card contém:
+  - Área reservada para ícone
+  - Título
+  - Texto curto
+  - Botão "Ver mais"
+
+SEÇÃO QUEM SOU
+- Layout em duas colunas
+- Coluna esquerda: espaço reservado para imagem ilustrativa
+- Coluna direita: título + parágrafo descritivo
+
+SEÇÃO INFORMAÇÕES
+- Grid com 3 cards reutilizando o mesmo componente de card
+- Títulos sugeridos:
+  - Atendimentos
+  - Aulas / Leituras
+  - Perguntas Frequentes
+
+ESTILO VISUAL
+- Paleta inspirada em tons místicos:
+  - Roxo profundo
+  - Dourado suave
+  - Creme claro
+- Bordas suaves
+- Sombras leves
+- Botões arredondados
+
+TIPOGRAFIA (IMPORTANTE)
+- Preparar o CSS para uso de fontes locais (via @font-face)
+- Usar estas fontes como base:
+  - Títulos: fontes serifadas elegantes (ex: ancient_greece, zenitha_classic)
+  - Textos: serifada leve ou manuscrita suave (ex: sophie_fancy, soligant)
+- Não usar Google Fonts
+
+RESPONSIVIDADE
+- Layout responsivo para desktop e mobile
+- Cards empilham corretamente no mobile
+- Hero mantém hierarquia visual
+
+JAVASCRIPT
+- JS mínimo apenas para:
+  - Scroll suave ao clicar nos botões do hero
+  - Estrutura pronta para parallax (sem lógica complexa)
+
+Não gere conteúdo fictício excessivo.
+Priorize estrutura, semântica e organização.
