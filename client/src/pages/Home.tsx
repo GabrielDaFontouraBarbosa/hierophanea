@@ -56,7 +56,7 @@ export default function Home() {
         <Hero />
 
         {/* Spells Section */}
-        <section id="spells" className="py-16 md:py-32 bg-background relative overflow-hidden">
+        <section id="spells" className="py-16 md:py-32 bg-gradient-to-b from-background via-background to-[#F5EFE5] relative overflow-hidden">
           <div className="container mx-auto px-4 md:px-6">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -78,7 +78,7 @@ export default function Home() {
         </section>
 
         {/* About Section */}
-        <section id="about" className="py-16 md:py-32 bg-[#FDFCF9] relative overflow-hidden">
+        <section id="about" className="py-16 md:py-32 bg-gradient-to-b from-[#F5EFE5] via-[#F2EAE0] to-[#ECDCC8] relative overflow-hidden">
           <div className="container mx-auto px-4 md:px-6 relative z-10">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -103,7 +103,7 @@ export default function Home() {
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-accent/5 via-transparent to-transparent blur-[60px] md:blur-[100px]" />
                 <div className="relative z-10 p-4 w-full max-w-[280px] sm:max-w-[320px] md:max-w-[450px]">
                   <img 
-                    src="/assets/logo-aged.png" 
+                    src="/assets/coruja_logo.png" 
                     alt="Owl illustration" 
                     className="w-full h-auto drop-shadow-2xl animate-[float_6s_easeInOut_infinite]"
                   />
@@ -122,7 +122,7 @@ export default function Home() {
                 className="text-center lg:text-left order-1 lg:order-2"
               >
                 <h3 className="text-lg md:text-2xl font-serif mb-6 md:mb-8 text-foreground/90 tracking-[0.15em] uppercase">
-                  Ola, meu nome é <span className="text-accent underline underline-offset-8 decoration-accent/20">Morgana</span>
+                  Ola, meu nome é <span className="text-accent underline underline-offset-8 decoration-accent/20">Aletheia</span>
                 </h3>
                 <div className="space-y-6 md:space-y-8 text-[15px] md:text-lg text-foreground/70 font-body leading-relaxed max-w-xl mx-auto lg:mx-0">
                   <p>
@@ -138,7 +138,7 @@ export default function Home() {
         </section>
 
         {/* Info Section */}
-        <section id="info" className="py-16 md:py-32 bg-background relative border-t border-border/20">
+        <section id="info" className="py-16 md:py-32 bg-gradient-to-b from-[#ECDCC8] via-background to-background relative border-t border-border/20">
           <div className="container mx-auto px-4 md:px-6">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -160,7 +160,7 @@ export default function Home() {
         </section>
 
         {/* Lojinha placeholder */}
-        <section id="shop" className="py-16 md:py-32 bg-[#FDFCF9] border-t border-border/20">
+        <section id="shop" className="py-16 md:py-32 bg-gradient-to-b from-background via-[#F5EFE5] to-[#F2EAE0] border-t border-border/20">
           <div className="container mx-auto px-4 md:px-6">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -173,11 +173,44 @@ export default function Home() {
               </div>
             </motion.div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-12 opacity-80">
-               <div className="bg-white/50 border border-border/30 rounded-xl p-6 md:p-8 h-32 md:h-40 flex items-center justify-center italic text-accent/40 text-sm md:text-base">Em breve</div>
-               <div className="bg-white/50 border border-border/30 rounded-xl p-6 md:p-8 h-32 md:h-40 flex items-center justify-center italic text-accent/40 text-sm md:text-base">Em breve</div>
-               <div className="bg-white/50 border border-border/30 rounded-xl p-6 md:p-8 h-32 md:h-40 flex items-center justify-center italic text-accent/40 text-sm md:text-base hidden sm:flex">Em breve</div>
-            </div>
+            <motion.div 
+              initial={{ perspective: 1200 }}
+              whileInView={{ perspective: 1200 }}
+              viewport={{ once: true }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-12"
+            >
+              {/* Door */}
+              <motion.div
+                initial={{ scaleX: 0, rotateY: -90, opacity: 0 }}
+                whileInView={{ scaleX: 1, rotateY: 0, opacity: 1 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                viewport={{ once: true }}
+                style={{ transformOrigin: "left center", transformStyle: "preserve-3d" }}
+                className="col-span-full"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-transparent pointer-events-none rounded-xl" />
+              </motion.div>
+
+              {/* Items with stagger */}
+              {[0, 1, 2].map((idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ 
+                    duration: 0.6, 
+                    delay: 0.9 + idx * 0.15,
+                    ease: "easeOut"
+                  }}
+                  viewport={{ once: true }}
+                  className={idx === 2 ? "hidden sm:block" : ""}
+                >
+                  <div className="bg-white/50 border border-border/30 rounded-xl p-6 md:p-8 h-32 md:h-40 flex items-center justify-center italic text-accent/40 text-sm md:text-base hover:bg-white/70 hover:border-accent/30 transition-all cursor-pointer">
+                    Em breve
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </section>
       </main>
