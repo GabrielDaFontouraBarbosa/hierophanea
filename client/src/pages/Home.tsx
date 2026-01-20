@@ -3,29 +3,39 @@ import { Hero } from "@/components/Hero";
 import { SpellCard } from "@/components/SpellCard";
 import { InfoSection } from "@/components/InfoSection";
 import { Footer } from "@/components/Footer";
-import { motion } from "framer-motion";
-import { Flame, Eye, Shield, Gem, Book, Hourglass, Triangle } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { Flame, Eye, Shield, Gem, Book, Hourglass, Triangle, Heart, TrendingUp, Scissors, Wind, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const spells = [
   {
-    title: "Chama Interior",
-    description: "Aumente a sua intuição e clareza interior.",
-    icon: Flame,
+    title: "Adoçamento Amoroso",
+    description: "Atraia amor, afeto e conexões significativas em sua vida.",
+    detailedDescription: "Nesse feitiço são trabalhadas energias que aproximam a energia do casal, seja um casal já existente ou em potencial. Também é recomendado para a dissolução de conflitos amorosos. São invocadas as forças de Afrodite ou de Hékate, e isso é indicado numa leitura de tarot inclusa. Não é amarração amorosa.",
+    price: 350,
+    icon: Heart,
   },
   {
-    title: "Proteção Rúnica",
-    description: "Crie um escudo contra energias negativas.",
-    icon: Shield,
+    title: "Abertura de Caminhos Financeiros",
+    description: "Desbloqueie a prosperidade e abra portas para abundância.",
+    detailedDescription: "Desbloqueie o fluxo de prosperidade e abundância em sua vida. Este feitiço trabalha para remover obstáculos financeiros, atrair oportunidades de ganho e abrir portas para novas fontes de renda. Combina técnicas ancestrais de manifestação com práticas modernas de energia. Potencializa sua capacidade de atrair riqueza.",
+    price: 400,
+    icon: TrendingUp,
   },
   {
-    title: "AstroVisão",
-    description: "Conecte-se ao poder dos astros e a clarividência.",
-    icon: Eye,
+    title: "Corte de Laços",
+    description: "Liberte-se de relacionamentos tóxicos e energias presas.",
+    detailedDescription: "Liberte-se de relacionamentos prejudiciais e energias que não servem mais a seu crescimento. Um ritual de transformação que encerra ciclos tóxicos com respeito e compaixão. Permite que você siga em frente sem traumas ou conexões que drenam sua energia. Essencial para cura emocional.",
+    price: 320,
+    icon: Scissors,
   },
   {
-    title: "Amuleto da Sorte",
-    description: "Atraia boas energias e proteção.",
-    icon: Gem,
+    title: "Limpeza e Proteção",
+    description: "Purifique seu ambiente e fortaleça sua defesa espiritual.",
+    detailedDescription: "Purifique seu espaço e sua aura de energias negativas, bloqueios e influências indesejadas. Um escudo espiritual que protege você e seu ambiente contra interferências externas. Cria um campo de luz que afasta negatividade enquanto permite a passagem de energias benéficas. Prática essencial para manutenção contínua.",
+    price: 280,
+    icon: Wind,
   },
 ];
 
@@ -48,6 +58,9 @@ const extraInfo = [
 ];
 
 export default function Home() {
+  const [selectedSpellIndex, setSelectedSpellIndex] = useState<number | null>(null);
+  const selectedSpell = selectedSpellIndex !== null ? spells[selectedSpellIndex] : null;
+
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-accent/10">
       <Navigation />
@@ -56,7 +69,7 @@ export default function Home() {
         <Hero />
 
         {/* Spells Section */}
-        <section id="spells" className="py-16 md:py-32 bg-gradient-to-b from-background via-background to-[#F5EFE5] relative overflow-hidden">
+        <section id="spells" className="py-16 md:py-32 bg-gradient-to-b from-background via-background to-[#F5EFE5] relative">
           <div className="container mx-auto px-4 md:px-6">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -69,11 +82,107 @@ export default function Home() {
               </div>
             </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
-              {spells.map((spell, idx) => (
-                <SpellCard key={idx} {...spell} delay={idx * 0.1} />
-              ))}
-            </div>
+            {selectedSpellIndex !== null ? (
+              // Expanded view
+              <motion.div
+                layoutId="spell-container"
+                className="bg-white rounded-2xl shadow-2xl p-6 md:p-10 mb-8"
+              >
+                <button
+                  onClick={() => setSelectedSpellIndex(null)}
+                  className="ml-auto block p-2 hover:bg-accent/10 rounded-full transition-colors mb-4"
+                >
+                  <X className="w-6 h-6 text-foreground/60" />
+                </button>
+
+                <div className="grid grid-cols-1 md:grid-cols-[250px_1fr] gap-8 items-start">
+                  {/* Left - Icon */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 }}
+                    className="flex flex-col items-center md:items-start"
+                  >
+                    <div className="w-32 h-32 bg-gradient-to-br from-accent/15 to-accent/5 rounded-2xl flex items-center justify-center mb-6">
+                      {selectedSpell && <selectedSpell.icon className="w-16 h-16 text-accent" />}
+                    </div>
+                    <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground text-center md:text-left">
+                      {selectedSpell?.title}
+                    </h2>
+                    {selectedSpell && (
+                      <div className="mt-6 bg-gradient-to-r from-[#D4AF37] to-[#E5C158] px-6 py-3 rounded-full text-center w-full">
+                        <p className="text-black font-serif font-bold text-2xl">
+                          R$ {selectedSpell.price}
+                        </p>
+                      </div>
+                    )}
+                  </motion.div>
+
+                  {/* Right - Content */}
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.15 }}
+                    className="space-y-6"
+                  >
+                    <div>
+                      <p className="text-lg text-accent italic font-medium mb-4">
+                        {selectedSpell?.description}
+                      </p>
+                      <p className="text-foreground/75 leading-relaxed text-base whitespace-pre-wrap">
+                        {selectedSpell?.detailedDescription}
+                      </p>
+                    </div>
+
+                    <div className="space-y-3 pt-6 border-t border-border/20">
+                      <h3 className="text-sm uppercase tracking-widest text-accent/70 font-semibold">
+                        Benefícios
+                      </h3>
+                      <ul className="space-y-2 text-foreground/70 text-sm">
+                        <li className="flex items-start gap-3">
+                          <span className="text-accent mt-1 flex-shrink-0">✦</span>
+                          <span>Transformação energética profunda</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-accent mt-1 flex-shrink-0">✦</span>
+                          <span>Resultados personalizados ao seu caso</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-accent mt-1 flex-shrink-0">✦</span>
+                          <span>Acompanhamento durante o processo</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 }}
+                      className="pt-4"
+                    >
+                      <Button
+                        className="w-full md:w-auto bg-accent hover:bg-[#B8962E] text-black rounded-full h-12 px-8 font-serif font-bold uppercase tracking-widest"
+                        onClick={() => alert(`Contato para: ${selectedSpell?.title}`)}
+                      >
+                        Solicitar Feitiço
+                      </Button>
+                    </motion.div>
+                  </motion.div>
+                </div>
+              </motion.div>
+            ) : (
+              // Grid view
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
+                {spells.map((spell, idx) => (
+                  <SpellCard 
+                    key={idx}
+                    {...spell} 
+                    delay={idx * 0.1}
+                    onClick={() => setSelectedSpellIndex(idx)}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         </section>
 

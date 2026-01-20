@@ -5,18 +5,23 @@ import { Button } from "@/components/ui/button";
 interface SpellCardProps {
   title: string;
   description: string;
+  detailedDescription?: string;
+  price?: number;
   icon: LucideIcon;
   delay?: number;
+  onClick?: () => void;
 }
 
-export function SpellCard({ title, description, icon: Icon, delay = 0 }: SpellCardProps) {
+export function SpellCard({ title, description, detailedDescription, price, icon: Icon, delay = 0, onClick }: SpellCardProps) {
   return (
-    <motion.div
+    <motion.button
+      onClick={onClick}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
       viewport={{ once: true }}
-      className="group relative bg-[#FDFCF9] rounded-xl border border-[#E5E1D5] p-6 md:p-8 text-center flex flex-col items-center hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] transition-all duration-500"
+      whileHover={{ y: -5 }}
+      className="group relative bg-[#FDFCF9] rounded-xl border border-[#E5E1D5] p-6 md:p-8 text-center flex flex-col items-center hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] transition-all duration-500 w-full cursor-pointer"
     >
       <div className="mb-6 text-accent group-hover:scale-110 transition-transform duration-700 ease-out">
         <Icon className="w-12 h-12 stroke-[1.2]" />
@@ -26,9 +31,10 @@ export function SpellCard({ title, description, icon: Icon, delay = 0 }: SpellCa
         {title}
       </h3>
       
-      <p className="text-foreground/60 font-body leading-relaxed mb-8 flex-grow text-sm md:text-base">
+      <p className="text-foreground/60 font-body leading-relaxed mb-6 flex-grow text-sm md:text-base">
         {description}
       </p>
+
 
       <Button 
         variant="default"
@@ -39,6 +45,6 @@ export function SpellCard({ title, description, icon: Icon, delay = 0 }: SpellCa
       
       {/* Photo-accurate soft bottom shadow */}
       <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/[0.03] to-transparent pointer-events-none rounded-b-xl" />
-    </motion.div>
+    </motion.button>
   );
 }
