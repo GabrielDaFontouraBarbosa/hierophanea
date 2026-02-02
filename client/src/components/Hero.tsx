@@ -41,7 +41,7 @@ export function Hero() {
         </h1>
         
         <p className="text-lg md:text-xl text-white/70 mb-12 max-w-xl mx-auto font-body italic tracking-wide">
-          Leituras, feitiços ed estudos espirituais para aprofundar sua jornada.
+          Leituras, feitiços e estudos espirituais para aprofundar sua jornada.
         </p>
         
         <div className="flex flex-row gap-6 justify-center">
