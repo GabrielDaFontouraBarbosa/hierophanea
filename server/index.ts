@@ -91,8 +91,8 @@ if (process.env.NODE_ENV === "production") {
     console.log(`prod server on :${PORT}`);
   });
 } else {
-  app.listen(PORT, "127.0.0.1", () => {
-    console.log(`dev server on http://localhost:${PORT}`);
+  app.listen(PORT, "0.0.0.0", () => {
+    console.log(`dev server on http://0.0.0.0:${PORT}`);
   });
 }
 
