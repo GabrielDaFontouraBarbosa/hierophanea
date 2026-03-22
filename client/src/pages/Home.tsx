@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Flame, Eye, Shield, Gem, Book, Hourglass, Triangle, Heart, TrendingUp, Scissors, Wind, X, GraduationCap, BookOpen, HelpCircle, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { assetUrl } from "@/lib/config";
 
 const spells = [
   {
@@ -15,7 +16,7 @@ const spells = [
     detailedDescription: "Nesse feitiço são trabalhadas energias que aproximam a energia do casal, seja um casal já existente ou em potencial. Também é recomendado para a dissolução de conflitos amorosos. São invocadas as forças de Afrodite ou de Hékate, e isso é indicado numa leitura de tarot inclusa. Não é amarração amorosa.",
     price: 350,
     icon: Heart,
-    image: "/assets/adocamento.jpg"
+    image: assetUrl("/assets/adoçamento amoroso 1.jpeg")
   },
   {
     title: "Sucesso Acadêmico",
@@ -23,23 +24,24 @@ const spells = [
     detailedDescription: "Potencialize sua capacidade de aprendizado, memória e concentração. Este feitiço é ideal para estudantes que buscam clareza mental durante provas, concursos ou desenvolvimento de pesquisas acadêmicas. Trabalha a energia de Hermes/Mercúrio para fluidez intelectual.",
     price: 300,
     icon: GraduationCap,
-    image: "/assets/academico.jpg"
+    image: assetUrl("/assets/exite academico.jpeg"),
+    imageClassName: "object-[center_45%]"
   },
   {
     title: "Corte de Laços",
     description: "Liberte-se de relacionamentos tóxicos e energias presas.",
-    detailedDescription: "Liberte-se de relacionamentos prejudiciais e energias que não servem mais a seu crescimento. Um ritual de transformação que encerra ciclos tóxicos com respeito e compaixão. Permite que você siga em frente sem traumas ou conexões que drenam sua energia. Essencial para cura emocional.",
+    detailedDescription: "Liberte-se de relacionamentos prejudiciais e energias que não servem mais a seu crescimento. Um ritual de transformação que encerra ciclos tóxicos com respeito e compaixão. Permite que você siga em frente sem traumas ou conexões que drenam sua energia. O feitiço trabalha as energias dos deuses Hékate, Cronos e Moiras.",
     price: 320,
     icon: Scissors,
-    image: "/assets/corte.jpg"
+    image: assetUrl("/assets/corte.jpg")
   },
   {
     title: "Limpeza e Proteção",
     description: "Purifique seu ambiente e fortaleça sua defesa espiritual.",
-    detailedDescription: "Purifique seu espaço e sua aura de energias negativas, bloqueios e influências indesejadas. Um escudo espiritual que protege você e seu ambiente contra interferências externas. Cria um campo de luz que afasta negatividade enquanto permite a passagem de energias benéficas. Prática essencial para manutenção contínua.",
-    price: 280,
+    detailedDescription: "Purifique seu espaço e sua aura de energias negativas, bloqueios e influências indesejadas. Um escudo espiritual que protege você e seu ambiente contra interferências externas. São trabalhadas as forças das divindades Hékate e Medeia.",
+    price: 400,
     icon: Shield,
-    image: "/assets/protecao.jpg"
+    image: assetUrl("/assets/protelao.jpeg")
   },
 ];
 
@@ -108,7 +110,7 @@ export default function Home() {
                   >
                     <div className="w-full aspect-square bg-accent/5 rounded-2xl overflow-hidden flex items-center justify-center">
                       {selectedSpell?.image ? (
-                        <img src={selectedSpell.image} alt={selectedSpell.title} className="w-full h-full object-cover" />
+                        <img src={selectedSpell.image} alt={selectedSpell.title} className={`w-full h-full object-cover ${(selectedSpell as { imageClassName?: string })?.imageClassName ?? ""}`} />
                       ) : (
                         <selectedSpell.icon className="w-24 h-24 text-accent/20" />
                       )}
@@ -169,7 +171,12 @@ export default function Home() {
 
                     <Button
                       className="w-full bg-accent hover:bg-[#B8962E] text-black rounded-full h-12 px-8 font-serif font-bold uppercase tracking-widest"
-                      onClick={() => alert(`Contato para: ${selectedSpell?.title}`)}
+                      onClick={() => {
+                        const message = `Olá gostaria de saber mais sobre ${selectedSpell?.title} vim pelo site!`;
+                        const encodedMessage = encodeURIComponent(message);
+                        const whatsappUrl = `https://wa.me/5521992355469?text=${encodedMessage}`;
+                        window.open(whatsappUrl, "_blank");
+                      }}
                     >
                       Solicitar Feitiço
                     </Button>
@@ -218,9 +225,9 @@ export default function Home() {
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-accent/5 via-transparent to-transparent blur-[60px] md:blur-[100px]" />
                 <div className="relative z-10 p-4 w-full max-w-[280px] sm:max-w-[320px] md:max-w-[450px]">
                   <img 
-                    src="/assets/coruja_logo.png" 
-                    alt="Owl illustration" 
-                    className="w-full h-auto drop-shadow-2xl animate-[float_6s_easeInOut_infinite]"
+                    src={assetUrl("/assets/quem_sou.jpg")} 
+                    alt="Aletheia" 
+                    className="w-full h-auto drop-shadow-2xl rounded-2xl object-cover aspect-[3/4] animate-[float_6s_easeInOut_infinite]"
                   />
                   {/* Decorative Sparkles */}
                   <div className="absolute top-0 right-0 w-3 h-3 md:w-4 md:h-4 bg-accent/20 rounded-full blur-sm animate-pulse" />

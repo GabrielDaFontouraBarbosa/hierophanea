@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BookOpen, ChevronRight, Star } from "lucide-react";
+import { assetUrl } from "@/lib/config";
 import { Button } from "@/components/ui/button";
 
 const readings = [
   {
     id: "tarot",
-    title: "Tarot Terapêutico",
+    title: "Tarot",
     description: "Uma análise profunda dos arquétipos para orientação pessoal.",
-    content: "O Tarot Terapêutico foca no autoconhecimento e na compreensão dos processos internos, ajudando a identificar bloqueios e caminhos para evolução espiritual e emocional."
+    content: "O Tarot foca no autoconhecimento e na compreensão dos processos internos, ajudando a identificar bloqueios e caminhos para evolução espiritual e emocional."
   },
   {
     id: "astrologia",
@@ -17,10 +18,10 @@ const readings = [
     content: "Entenda suas inclinações, desafios e propósito de alma através da análise da posição dos astros. Um guia completo sobre sua personalidade e destino."
   },
   {
-    id: "runas",
-    title: "Runas Nórdicas",
-    description: "Sabedoria ancestral através de símbolos rúnicos.",
-    content: "As runas oferecem respostas diretas e conselhos práticos para situações do cotidiano, conectando você com a força e proteção da tradição nórdica."
+    id: "mitologia",
+    title: "Mitologia Grega",
+    description: "Conecte-se com os mitos e arquétipos da Grécia antiga.",
+    content: "A mitologia grega oferece um rico repertório de símbolos e narrativas que iluminam questões existenciais e espirituais. Explore os deuses, heróis e mistérios como ferramenta de autoconhecimento e conexão com o sagrado."
   }
 ];
 
@@ -81,9 +82,10 @@ export function ReadingsSection() {
 
 export function ShopSection() {
   const products = [
-    { name: "Vela Ritualística", price: 45, image: "/assets/vela.jpg" },
-    { name: "Incenso Natural", price: 25, image: "/assets/incenso.jpg" },
-    { name: "Cristal Purificado", price: 60, image: "/assets/cristal.jpg" }
+    { name: "Vela Ritualística", price: 45, image: assetUrl("/assets/vela.jpg") },
+    { name: "Incenso Natural", price: 25, image: assetUrl("/assets/incenso.jpg") },
+    { name: "Cristal Purificado", price: 60, image: assetUrl("/assets/cristal.jpg") },
+    { name: "Amuleto Personalizado", price: 90, image: assetUrl("/assets/cristal.jpg") }
   ];
 
   return (

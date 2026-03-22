@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 import { Menu, X } from "lucide-react";
+import { assetUrl } from "@/lib/config";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 
@@ -50,7 +51,7 @@ export function Navigation() {
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 md:gap-3 group">
           <img 
-            src="/assets/logo-old-gold.png" 
+            src={assetUrl("/assets/logo-old-gold.png")} 
             alt="Logo" 
             className="w-8 h-8 md:w-10 md:h-10 group-hover:scale-110 transition-transform duration-500"
           />

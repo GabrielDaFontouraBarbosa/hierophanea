@@ -14,8 +14,8 @@ interface SpellDetailsProps {
 const detailedDescriptions: Record<string, string> = {
   "Adoçamento Amoroso": "Um feitiço poderoso para atrair e fortalecer conexões amorosas. Trabalha com as energias do coração, despertando a capacidade de amar e ser amado. Ideal para quem busca romance, afeto genuíno e relacionamentos mais profundos. As práticas envolvem rituais de intenção, cristais de energia amorosa e trabalho com o chakra do coração.",
   "Abertura de Caminhos Financeiros": "Desbloqueie o fluxo de prosperidade e abundância em sua vida. Este feitiço trabalha para remover obstáculos financeiros, atrair oportunidades de ganho e abrir portas para novas fontes de renda. Combina técnicas ancestrais de manifestação com práticas modernas de energia. Potencializa sua capacidade de atrair riqueza e reconhecer oportunidades.",
-  "Corte de Laços": "Liberte-se de relacionamentos prejudiciais e energias que não servem mais a seu crescimento. Um ritual de transformação que encerra ciclos tóxicos com respeito e compaixão. Permite que você siga em frente sem traumas ou conexões que drenam sua energia. Essencial para cura emocional e reconstrução pessoal.",
-  "Limpeza e Proteção": "Purifique seu espaço e sua aura de energias negativas, bloqueios e influências indesejadas. Um escudo espiritual que protege você e seu ambiente contra interferências externas. Cria um campo de luz que afasta negatividade enquanto permite a passagem de energias benéficas. Prática essencial para manutenção energética contínua.",
+  "Corte de Laços": "Liberte-se de relacionamentos prejudiciais e energias que não servem mais a seu crescimento. Um ritual de transformação que encerra ciclos tóxicos com respeito e compaixão. Permite que você siga em frente sem traumas ou conexões que drenam sua energia. O feitiço trabalha as energias dos deuses Hékate, Cronos e Moiras.",
+  "Limpeza e Proteção": "Purifique seu espaço e sua aura de energias negativas, bloqueios e influências indesejadas. Um escudo espiritual que protege você e seu ambiente contra interferências externas. São trabalhadas as forças das divindades Hékate e Medeia.",
 };
 
 export function SpellDetail({
@@ -126,8 +126,10 @@ export function SpellDetail({
                     <Button
                       className="w-full bg-accent hover:bg-[#B8962E] text-black rounded-full h-12 font-serif font-bold uppercase tracking-widest"
                       onClick={() => {
-                        // TODO: Abrir formulário de contato ou redirecionar
-                        alert(`Contato para: ${title}`);
+                        const message = `Olá gostaria de saber mais sobre ${title} vim pelo site!`;
+                        const encodedMessage = encodeURIComponent(message);
+                        const whatsappUrl = `https://wa.me/5521992355469?text=${encodedMessage}`;
+                        window.open(whatsappUrl, "_blank");
                       }}
                     >
                       Solicitar Feitiço

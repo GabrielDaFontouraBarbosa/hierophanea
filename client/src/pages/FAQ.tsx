@@ -7,15 +7,23 @@ import { Link } from "wouter";
 const faqs = [
   {
     q: "Como funcionam os feitiços?",
-    a: "Os feitiços são rituais energéticos personalizados baseados em intenção e sabedoria ancestral. Cada caso é analisado previamente através de uma leitura inclusa no valor."
+    a: "Os feitiços são rituais energéticos personalizados baseados em intenção e sabedoria ancestral. Evocando diferentes entidades com relação ao feitiço escolhido. Cada caso é analisado previamente através de uma leitura inclusa no valor."
   },
   {
     q: "Quanto tempo demora para ver resultados?",
-    a: "A magia trabalha de forma sutil e progressiva. Os resultados podem variar, mas geralmente os primeiros sinais energéticos aparecem em 21 a 40 dias."
+    a: "A magia trabalha de forma sutil e progressiva. Os resultados podem variar, mas geralmente os primeiros sinais energéticos aparecem em 2 a 4 semanas."
   },
   {
     q: "As consultas são online ou presenciais?",
     a: "Atualmente todos os atendimentos e rituais são realizados de forma remota, mantendo a mesma eficácia e permitindo o registro em fotos/vídeos para o consulente."
+  },
+  {
+    q: "O que são amuletos?",
+    a: "Amuletos (do grego phylakterion e latim amuletum) são objetos criados ou consagrados por praticantes de magia em rituais específicos para proteção, cura ou afastamento de influências negativas. Podem ser imagens ou textos em materiais como metal, pedras e papyrus, e destinam-se a proteger o portador, o lar ou a afastar malefícios e maldições."
+  },
+  {
+    q: "O que são kolossoi?",
+    a: "Kolossoi são efígies rituais em forma de bonecos usadas desde a Grécia Antiga (séc. IV a.C.) como feitiços de ligação. Seu propósito é defender contra energias hostis vinculando o sujeito em vez de destruí-lo. O resultado depende da intenção de quem pratica."
   }
 ];
 

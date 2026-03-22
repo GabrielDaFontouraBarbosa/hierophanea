@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { assetUrl } from "@/lib/config";
 
 export function Hero() {
   const scrollToSpells = () => {
@@ -30,7 +31,7 @@ export function Hero() {
           transition={{ duration: 1, delay: 0.2 }}
         >
           <img 
-            src="/assets/coruja_logo.png" 
+            src={assetUrl("/assets/coruja_logo.png")} 
             alt="Hierophanea Logo" 
             className="w-32 md:w-40 h-auto mx-auto mb-12 drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]"
           />
